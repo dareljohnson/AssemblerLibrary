@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AssemblerLibrary.InstructionSetModels
 {
+    // C-InstructionSet for readonly
     public class CInstructionSetTable : IDisposable
     {
         // Pointer to an external unmanaged resource. 
@@ -90,5 +91,4 @@ namespace AssemblerLibrary.InstructionSetModels
             Dispose(false);
         }
     }
-
 }

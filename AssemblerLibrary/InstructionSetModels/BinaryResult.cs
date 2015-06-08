@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AssemblerLibrary.InstructionSetModels
 {
-    public class JumpInstructionTable : IDisposable
+    public class BinaryResult
     {
         // Pointer to an external unmanaged resource. 
         private IntPtr handle;
@@ -17,16 +17,28 @@ namespace AssemblerLibrary.InstructionSetModels
         bool disposed = false;
 
         // Properties
-        public string Jump { get; set; }
-        public int j1 { get; set; }
-        public int j2 { get; set; }
-        public int j3 { get; set; }
+        public int b0 { get; set; } // msb
+        public int b1 { get; set; }
+        public int b2 { get; set; }
+        public int b3 { get; set; }
+        public int b4 { get; set; }
+        public int b5 { get; set; }
+        public int b6 { get; set; }
+        public int b7 { get; set; }
+        public int b8 { get; set; }
+        public int b9 { get; set; }
+        public int b10 { get; set; }
+        public int b11 { get; set; }
+        public int b12 { get; set; }
+        public int b13 { get; set; }
+        public int b14 { get; set; }
+        public int b15 { get; set; } // lsb
 
         // The class constructor. 
-        public JumpInstructionTable() { }
+        public BinaryResult() { }
 
         // The class constructor. 
-        public JumpInstructionTable(IntPtr handle)
+        public BinaryResult(IntPtr handle)
         {
             this.handle = handle;
         }
@@ -78,7 +90,7 @@ namespace AssemblerLibrary.InstructionSetModels
         // does not get called. 
         // It gives your base class the opportunity to finalize. 
         // Do not provide destructors in types derived from this class.
-        ~JumpInstructionTable()
+        ~BinaryResult()
         {
             // Do not re-create Dispose clean-up code here. 
             // Calling Dispose(false) is optimal in terms of 
@@ -87,4 +99,5 @@ namespace AssemblerLibrary.InstructionSetModels
         }
 
     }
+
 }

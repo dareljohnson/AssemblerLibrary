@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InstructionSetModels\AInstruction.cs" />
+    <Compile Include="InstructionSetModels\BinaryResult.cs" />
     <Compile Include="InstructionSetModels\CInstructionSetTable.cs" />
     <Compile Include="InstructionSetModels\DestInstructionTable.cs" />
     <Compile Include="InstructionSetModels\JumpInstructionTable.cs" />
