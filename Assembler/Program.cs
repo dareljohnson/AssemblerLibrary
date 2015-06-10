@@ -176,7 +176,7 @@ namespace Assembler
                     while ((line = reader.ReadLine()) != null)
                     {
                         // clean data
-                        if (SymbolMatcher(ref line)) continue;
+                        if (SymbolCleaner(ref line)) continue;
                         
                         Match match2 = Regex.Match(line, @"/\A\D\w+|\A\w\D\D\D\w|\A\w\D|\A\w\=\w\+\w|\A\w\=\w\-\w/", RegexOptions.IgnoreCase);
                         if (match2.Success)
@@ -226,7 +226,7 @@ namespace Assembler
             Console.ReadLine();
         }
 
-        private static bool SymbolMatcher(ref string line)
+        private static bool SymbolCleaner(ref string line)
         {
             if (line.StartsWith("/")) return true;
             Match match1 = Regex.Match(line, @"/\A\/+/", RegexOptions.IgnoreCase);
