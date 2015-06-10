@@ -171,16 +171,23 @@ namespace Assembler
                 using (StreamReader reader = new StreamReader(path))
                 {
                     string line;
-
+                    var counter = 0;
+                    var addressStart = 1024;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        if (line.StartsWith("/")) continue;
-                        Match match = Regex.Match(line, @"//", RegexOptions.IgnoreCase);
-                        line = line.Replace(@"/\W\/+\s+\w\D\w\D\d+/", "");
-                        if (match.Success) continue;
+                        // clean data
+                        if (SymbolMatcher(ref line)) continue;
                         
-                        symbolTable.Add(new SymbolTable {Mnenomic = line, Address = 4});
-                        //Console.WriteLine(line); // Write to console.
+                        Match match2 = Regex.Match(line, @"/\A\D\w+|\A\w\D\D\D\w|\A\w\D|\A\w\=\w\+\w|\A\w\=\w\-\w/", RegexOptions.IgnoreCase);
+                        if (match2.Success)
+                        {
+                            line = line.Replace(@"/\/+\s+\D*\W+\w+/", "");
+                            // Add data to Symbol Table
+                            if (line.StartsWith("(")) addressStart++;
+                            symbolTable.Add(new SymbolTable { Mnenomic = line, Address = counter + addressStart });
+
+                            counter++;
+                        }
                     }
                 }
             }
@@ -217,6 +224,15 @@ namespace Assembler
 
 
             Console.ReadLine();
+        }
+
+        private static bool SymbolMatcher(ref string line)
+        {
+            if (line.StartsWith("/")) return true;
+            Match match1 = Regex.Match(line, @"/\A\/+/", RegexOptions.IgnoreCase);
+            
+            if (match1.Success) return true;
+            return false;
         }
     }
 }
